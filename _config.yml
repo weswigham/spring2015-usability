@@ -10,7 +10,7 @@ title:               Usability
 tagline:             'The Embloggening'
 description:         'A particularly verbose log of explorations in usability studies at the group work level. Site made with the wonderful <a href="https://github.com/poole/lanyon">Lanyon</a> jekyll theme.'
 url:                 http://ham.io/usability
-baseurl:             /
+baseurl:             ''
 paginate:            5
 
 # Custom vars
