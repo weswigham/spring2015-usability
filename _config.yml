@@ -12,6 +12,3 @@ description:         'A particularly verbose log of explorations in usability st
 url:                 http://ham.io/usability
 baseurl:             ''
 paginate:            5
-
-# Custom vars
-version:             1.0.0
