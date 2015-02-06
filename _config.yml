@@ -1,0 +1,17 @@
+highlighter:        'rouge' #Removes python dep for dev
+# Permalinks
+#
+# Use of `relative_permalinks` ensures post links from the index work properly.
+permalink:           pretty
+relative_permalinks: true
+
+# Setup
+title:               Usability
+tagline:             'The Embloggening'
+description:         'A particularly verbose log of explorations in usability studies at the group work level. Site made with the wonderful <a href="https://github.com/poole/lanyon">Lanyon</a> jekyll theme.'
+url:                 http://ham.io/usability
+baseurl:             /
+paginate:            5
+
+# Custom vars
+version:             1.0.0
