@@ -1,0 +1,24 @@
+---
+title: Cordova in Visual Studio 2015 Preview
+author: Wesley Wigham
+layout: post
+---
+
+Jesse asked me to find everyone a tutorial on how to use Apache Cordova - well, here's an 
+[AngularJSTodo Example.](https://code.msdn.microsoft.com/AngularJS-TODO-Sample-for-b651512a/)
+You'll note that a Cordova application is just an html/js single page app with some additional
+APIs provided by Cordova. If you open the solution in the example, and select config.xml, you'll
+find that visual studio has an integrated editor for installing Cordova plugins to get more
+hardware APIs.
+
+Anyways, we don't have to use angular - there's the same example project using 
+[WinJS](https://code.msdn.microsoft.com/WinJS-TODO-Sample-for-17295485) and 
+[BackboneJS](https://code.msdn.microsoft.com/BackboneJS-TODO-Sample-for-615ac9f0) as other examples.
+Since we're focusing on Android development, we should choose a framework with a good 
+[material design](http://www.google.com/design/spec/material-design/introduction.html) integration
+library. I, for one, know about [angular-material](https://material.angularjs.org/#/) for angular and
+[material-ui](http://material-ui.com/#/) for react/jsx. Which frameworks, specifically, we'd
+like to use is up for discussion, but I think's it's safe to say that we all have some experience
+with web development, right? 
+
+
