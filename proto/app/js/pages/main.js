@@ -31,44 +31,38 @@ var videoStyles = {
     height: 'auto'
 };
 
-var overlayContainerStyles = {
+var targetAreaStyles = {
+    position: 'absolute',
+    top: '150px',
+    left: '150px',
+    right: '150px',
+    bottom: '150px',
+    backgroundColor: 'rgba(0,0,0,0.3)'
+};
+
+var leftBorderStyles = {
+    borderLeft: '2px solid white',
+    borderTop: '2px solid white',
+    borderBottom: '2px solid white',
+    position: 'absolute',
+    width: '15%',
     height: '100%',
-    width: '100%',  
-    position: 'absolute',
-    top: '0px',    
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    zIndex: 1
 };
 
-var settingsIconStyles = {
+var rightBorderStyles = {
+    borderRight: '2px solid white',
+    borderTop: '2px solid white',
+    borderBottom: '2px solid white',
     position: 'absolute',
-    top: '0px',
-    left: '0px',
-    margin: '12px',
-    marginTop: '8px',
-    fontSize: '50px',
-    color: 'white'
+    width: '15%',
+    right: '0px',
+    height: '100%'
 };
 
-var searchIconStyles = {
-    position: 'absolute',
-    bottom: '0px',
-    left: '0px',
-    margin: '12px',
-    fontSize: '50px',
-    color: 'white'
-};
-
-var recordCircleStyles = {
-    width: '100px',
-    height: '100px',
-    borderRadius: '50px',
-    backgroundColor: 'rgba(255,255,255,0.7)',
-    border: '5px solid',
-    borderColor: 'rgba(255,255,255,1)',
-    margin: '12px'
+var directionTextStyles = {
+    textAlign: 'center',
+    color: 'white',
+    paddingTop: '15%'
 };
 
 var Main = React.createClass({
@@ -76,11 +70,11 @@ var Main = React.createClass({
         return (
             <div style={containerStyles}>
                 <video src={window.URL.createObjectURL(stream)} style={videoStyles} muted autoPlay></video>
-                <div style={overlayContainerStyles}>
-                    <div style={recordCircleStyles} />
+                <div style={targetAreaStyles}>
+                    <div style={leftBorderStyles}></div>
+                    <div style={rightBorderStyles}></div>
+                    <h3 style={directionTextStyles}>Center a movie here and press to identify</h3>
                 </div>
-                <i style={settingsIconStyles} className="fa fa-bars"></i>
-                <i style={searchIconStyles} className="fa fa-search"></i>
             </div>
         );
     }
