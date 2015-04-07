@@ -32,6 +32,7 @@
     "material-ui": "latest",
     "normalize-css": "latest",
     "font-awesome": "latest",
-    "react": "latest"
+    "react": "latest",
+	"express": "latest"
   }
 }
