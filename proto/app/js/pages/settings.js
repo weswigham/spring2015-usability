@@ -1,46 +1,23 @@
 'use strict';
 var React = require('react');
+var Styles = require('../styles');
 var {LeftNav, MenuItem} = require('material-ui');
 
 navigator.getUserMedia  = navigator.getUserMedia ||
                           navigator.webkitGetUserMedia ||
                           navigator.mozGetUserMedia ||
-                          navigator.msGetUserMedia;
+                          navigator.msGetUserMedia ||
+                          function(){ alert("camera not available")};
 
 var stream;
 navigator.getUserMedia({video: true}, function(camera) {
-    stream = camera;
+    stream = window.URL.createObjectURL(camera);
   }, function() {
     console.log('camera denied');
 });
 
-var containerStyles = {
-    height: '100%',
-    width: '100%',
-    overflow: 'hidden'
-};
-
-var videoStyles = {
-    position: 'relative',
-    zIndex: '-1000',
-    backgroundSize: '100% 100%',
-    top: '0px',
-    left: '0px',
-    minWidth: '100%',
-    minHeight: '100%',
-    width: 'auto',
-    height: 'auto',
-    filter: 'blur(10px)',
-    WebkitFilter: 'blur(10px)'
-};
-
-var closeIconStyles = {
-    margin: '12px',
-    marginTop: '8px',
-    fontSize: '50px',
-    color: 'black'
-};
-
+var containerStyles = Styles.containerStyles;
+var videoStyles = Styles.blurVideoStyles;
 
 var Settings = React.createClass({
     render: function () {
@@ -51,22 +28,22 @@ var Settings = React.createClass({
             route: 'language',
             text: 'Language'
         }, {
-            route: 'stuff',
-            text: 'Stuff'
+            route: 'about',
+            text: 'About'
         }, {
-            route: 'otherstuff',
-            text: 'Other stuff'
+            route: 'advance',
+            text: 'Advance'
         }];
         return (
             <div style={containerStyles}>
-                <video src={window.URL.createObjectURL(stream)} style={videoStyles} muted autoPlay></video>
+                <video src={stream} style={videoStyles} muted autoPlay></video>
                 <LeftNav ref="nav" docked={false} menuItems={menuItems} />
             </div>
         );
     },
     componentDidMount: function() {
         this.refs.nav.toggle();
-        
+
         //the following is a hack to make the fullscreen drawer fit into the phone 'emulator' for prototyping
         //aka not needed on a real device
         var node = React.findDOMNode(this.refs.nav);
