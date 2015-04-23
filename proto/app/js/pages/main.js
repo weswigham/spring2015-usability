@@ -32,9 +32,9 @@ var Main = React.createClass({
         loadingStyles.width = this.state.loading + "%";
         return (
             <div style={containerStyles}>
-                <i style={filmIconStyles} className="fa fa-film"></i>
-                <i style={cogIconStyles} className="fa fa-cogs"></i>
-                <i style={centeredSearchIconStyles} className="fa fa-search"></i>
+                <i style={filmIconStyles} className="fa fa-film" onClick={() => this.props.goto('Playback')}></i>
+                <i style={cogIconStyles} className="fa fa-cogs" onClick={() => this.props.goto('Settings')}></i>
+                <i style={centeredSearchIconStyles} className="fa fa-search" onClick={() => this.props.goto('Search')}></i>
                 <div style={targetAreaStyles} onClick={this.onClick}>
                     <div id="loading" style={loadingStyles}></div>
                     <div style={leftBorderStyles}></div>

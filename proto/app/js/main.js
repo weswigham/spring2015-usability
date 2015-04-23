@@ -30,8 +30,7 @@ navigator.getUserMedia({video: true}, function(camera) {
 
 var containerStyles = { 
     position: 'absolute',
-    top: '45px', 
-    left: '20px', 
+    margin: '5px',
     height: '540px', 
     width: '960px', 
     boxShadow: '0 0 10px rgba(0,0,0,0.6)',
@@ -82,21 +81,15 @@ var PrototypeApplication = React.createClass({
             self.setState({ page: i, lastpage: curr });
         };
     },
-    pageKvs: function() {
-      var ret = [];
-      for (var k in pageInfo) {
-          if (pageInfo.hasOwnProperty(k)) {
-             ret.push({key: k, value: pageInfo[k]});
-          }
-      }
-      return ret;
-    },
     renderPage: function() {
-        return pageInfo[this.state.page] ? React.createElement(pageInfo[this.state.page].component) : '';
+        return pageInfo[this.state.page] ? React.createElement(pageInfo[this.state.page].component, {goto: this.goto.bind(this), from: this.state.lastpage}) : '';
+    },
+    goto: function(page) {
+      this.setState({ page: page, lastpage: this.state.page });
     },
     handleSettings: function() {
       if (this.state.page == "Settings") {
-        this.setState({ page: this.state.lastepage, lastpage: this.state.page });
+        this.setState({ page: this.state.lastpage, lastpage: this.state.page });
         return true;
       }  
       return false;
@@ -106,7 +99,7 @@ var PrototypeApplication = React.createClass({
       //go up      
       var page = pageInfo[this.state.page].up;
       if (page) {
-        this.setState({ page: page, lastpage: this.state.page });
+        this.goto(page);
       }
     },
     onSwipeDown: function(e) {
@@ -114,7 +107,7 @@ var PrototypeApplication = React.createClass({
       //go down      
       var page = pageInfo[this.state.page].down;
       if (page) {
-        this.setState({ page: page, lastpage: this.state.page });
+        this.goto(page);
       }      
     },
     onSwipeLeft: function(e) {
@@ -124,7 +117,7 @@ var PrototypeApplication = React.createClass({
       
       var page = pageInfo[this.state.page].right;
       if (page) {
-        this.setState({ page: page, lastpage: this.state.page });
+        this.goto(page);
       }
     },
     onSwipeRight: function(e) {
@@ -132,31 +125,24 @@ var PrototypeApplication = React.createClass({
       //go left      
       var page = pageInfo[this.state.page].left;
       if (page) {
-        this.setState({ page: page, lastpage: this.state.page });
+        this.goto(page);
       }
     },
     render: function () {
-        var page = this.renderPage();
-        var factory = this.pageSelectorFactory;
-        var state = this.state;
-        return (
-            <div>
-                <div>{
-                  this.pageKvs().map(function(elem, index){
-                    return <FlatButton label={elem.key} onClick={factory(state.page, elem.key)} key={index} />
-                  })   
-                }</div>
-                <Swipeable 
-                  style={containerStyles} 
-                  onSwipedLeft={this.onSwipeLeft} 
-                  onSwipedRight={this.onSwipeRight} 
-                  onSwipedUp={this.onSwipeUp} 
-                  onSwipedDown={this.onSwipeDown}>
-                    <video src={stream} style={pageInfo[this.state.page].blurVideo ? blurVideoStyles : videoStyles} muted autoPlay></video>
-                    {page}
-                </Swipeable>
-            </div>
-        );
+      var page = this.renderPage();
+      var factory = this.pageSelectorFactory;
+      var state = this.state;
+      return (
+        <Swipeable 
+          style={containerStyles} 
+          onSwipedLeft={this.onSwipeLeft} 
+          onSwipedRight={this.onSwipeRight} 
+          onSwipedUp={this.onSwipeUp} 
+          onSwipedDown={this.onSwipeDown}>
+            <video src={stream} style={pageInfo[this.state.page].blurVideo ? blurVideoStyles : videoStyles} muted autoPlay></video>
+            {page}
+        </Swipeable>
+      );
     }
 });
 

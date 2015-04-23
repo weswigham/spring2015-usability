@@ -19,7 +19,7 @@ var Settings = React.createClass({
             text: 'Advance'
         }];
         return (
-            <div style={containerStyles}>
+            <div style={containerStyles} onClick={() => this.props.goto(this.props.from)}>
                 <LeftNav ref="nav" docked={false} menuItems={menuItems} />
             </div>
         );

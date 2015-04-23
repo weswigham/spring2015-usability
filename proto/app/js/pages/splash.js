@@ -22,7 +22,7 @@ var headerStyle = {
 var Splash = React.createClass({
     render: function () {
         return (
-            <div style={containerStyles}>
+            <div style={containerStyles} onClick={() => this.props.goto('Main')}>
                 <div style={headerStyle}>
                     <h1 style={textStyle}>Subtitld</h1>
                     <small style={textStyle}>Wait a second while we set things up...</small>
