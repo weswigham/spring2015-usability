@@ -29,10 +29,12 @@
   },
   "dependencies": {
     "es6-promise": "latest",
+    "express": "latest",
+    "font-awesome": "latest",
     "material-ui": "latest",
     "normalize-css": "latest",
-    "font-awesome": "latest",
     "react": "latest",
-	"express": "latest"
+    "react-vtt": "^0.2.1",
+    "srt-to-vtt": "^1.0.2"
   }
 }
