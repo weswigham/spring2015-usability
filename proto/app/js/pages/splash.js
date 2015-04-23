@@ -2,16 +2,21 @@
 var React = require('react');
 
 var containerStyles = {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '100%',
-    width: '100%',
-    backgroundColor: 'rgba(175,175,175,1)'
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: '100%',
+  width: '100%',
+};
+
+var textStyle = {
+  textShadow: '1px 1px #000000',
+  color: 'white',
+  marginBottom: '1px'
 };
 
 var headerStyle = {
-    maxWidth: '50%'
+  maxWidth: '50%',
 };
 
 var Splash = React.createClass({
@@ -19,8 +24,8 @@ var Splash = React.createClass({
         return (
             <div style={containerStyles}>
                 <div style={headerStyle}>
-                    <h1 style={{marginBottom: '1px'}}>Subtitld</h1>
-                    <small>Wait a second while we set things up...</small>
+                    <h1 style={textStyle}>Subtitld</h1>
+                    <small style={textStyle}>Wait a second while we set things up...</small>
                 </div>
             </div>
         );

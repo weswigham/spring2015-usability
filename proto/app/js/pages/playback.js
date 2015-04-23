@@ -1,37 +1,22 @@
 'use strict';
 var React = require('react');
-var Styles = require('../styles');
+var {
+  containerStyles,
+  overlayContainerStyles,
+  settingsIconStyles,
+  pauseIconStyles,
+  timestampStyles,
+  timelineStyles,
+  subtitleStyles
+} = require('../styles');
 var {Snackbar, Slider} = require('material-ui');
 var srtToVtt = require('srt-to-vtt');
 var reactVtt = require('react-vtt');
-
-navigator.getUserMedia  = navigator.getUserMedia ||
-                          navigator.webkitGetUserMedia ||
-                          navigator.mozGetUserMedia ||
-                          navigator.msGetUserMedia ||
-                          function(){ alert("camera not available")};
-
-var stream;
-navigator.getUserMedia({video: true}, function(camera) {
-    stream = window.URL.createObjectURL(camera);
-  }, function() {
-    console.log('camera denied');
-});
-
-var containerStyles = Styles.containerStyles;
-var videoStyles = Styles.videoStyles;
-var overlayContainerStyles = Styles.overlayContainerStyles;
-var settingsIconStyles = Styles.settingIconStyles;
-var pauseIconStyles = Styles.pauseIconStyles;
-var timestampStyles = Styles.timestampStyles;
-var timelineStyles = Styles.timelineStyles;
-var subtitleStyles = Styles.subtitleStyles;
 
 var Playback = React.createClass({
     render: function () {
         return (
             <div style={containerStyles}>
-                <video src={stream} style={videoStyles} muted autoPlay></video>
                 <div style={overlayContainerStyles}>
                     <Snackbar ref="snack" message="We found 'Inception' for you! Enjoy the film!" action="dismiss" openOnMount={true} />
                 </div>
@@ -42,7 +27,7 @@ var Playback = React.createClass({
                 <h2 style={subtitleStyles}>
                     I need an architect
                     who's as good as I was.
-                </h2> // end quote to make syntax easier to read '
+                </h2>
             </div>
         );
     },

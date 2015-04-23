@@ -1,6 +1,6 @@
 Styles = {
   videoStyles: {
-      position: 'relative',
+      position: 'absolute',
       zIndex: '-1000',
       backgroundSize: '100% 100%',
       top: '0px',
@@ -13,7 +13,7 @@ Styles = {
   },
 
   blurVideoStyles: {
-      position: 'relative',
+      position: 'absolute',
       zIndex: '-1000',
       backgroundSize: '100% 100%',
       top: '0px',
