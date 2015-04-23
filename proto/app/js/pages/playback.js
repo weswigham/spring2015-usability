@@ -4,8 +4,6 @@ var Styles = require('../styles');
 var {Snackbar, Slider} = require('material-ui');
 var srtToVtt = require('srt-to-vtt');
 var reactVtt = require('react-vtt');
-console.log(srtToVtt);
-console.log(reactVtt);
 
 navigator.getUserMedia  = navigator.getUserMedia ||
                           navigator.webkitGetUserMedia ||

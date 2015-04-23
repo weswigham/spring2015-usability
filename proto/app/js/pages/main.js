@@ -1,6 +1,18 @@
 'use strict';
 var React = require('react');
-var Styles = require('../styles');
+var {
+  containerStyles,
+  videoStyles,
+  targetAreaStyles,
+  leftBorderStyles,
+  rightBorderStyles,
+  directionTextStyles,
+  loadingStyles,
+  filmIconStyles,
+  cogIconStyles,
+  centeredSearchIconStyles
+} = require('../styles');
+
 
 navigator.getUserMedia  = navigator.getUserMedia ||
                           navigator.webkitGetUserMedia ||
@@ -15,31 +27,17 @@ navigator.getUserMedia({video: true}, function(camera) {
     console.log('camera denied');
 });
 
-var containerStyles = {
-    height: '100%',
-    width: '100%',
-    overflow: 'hidden'
-};
-
-var videoStyles = Styles.videoStyles;
-var targetAreaStyles = Styles.targetAreaStyles;
-var leftBorderStyles = Styles.leftBorderStyles;
-var rightBorderStyles = Styles.rightBorderStyles;
-var directionTextStyles = Styles.directionTextStyles;
-var loadingStyles = Styles.loadingStyles;
-
 var Main = React.createClass({
     getInitialState: function() {
         return {loading: 0};
     },
     onClick: function() {
-        var self = this;
-        var i = setInterval( function() {
-          if (self.state.loading < 100) {
-              self.setState({loading:self.state.loading + 10*Math.random()});
+        var i = setInterval(() => {
+          if (this.state.loading < 100) {
+              this.setState({loading:this.state.loading + 10*Math.random()});
           }
-          if (self.state.loading > 100) {
-              self.setState({loading: 100});
+          if (this.state.loading > 100) {
+              this.setState({loading: 100});
               clearInterval(i);
           }
         }, 500);
@@ -49,6 +47,9 @@ var Main = React.createClass({
         return (
             <div style={containerStyles}>
                 <video src={stream} style={videoStyles} muted autoPlay></video>
+                <i style={filmIconStyles} className="fa fa-film"></i>
+                <i style={cogIconStyles} className="fa fa-cogs"></i>
+                <i style={centeredSearchIconStyles} className="fa fa-search"></i>
                 <div style={targetAreaStyles} onClick={this.onClick}>
                     <div id="loading" style={loadingStyles}></div>
                     <div style={leftBorderStyles}></div>

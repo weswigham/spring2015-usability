@@ -177,6 +177,33 @@ Styles = {
       position: 'absolute',
       height: '100%',
       backgroundColor: 'rgba(0,0,0,0.6)'
+  },
+  
+  filmIconStyles: {
+    position: 'absolute',
+    top: '0px',
+    left: 'calc(50% - 25px)',
+    margin: '12px',
+    fontSize: '50px',
+    color: 'white'
+  },
+  
+  cogIconStyles: {
+    position: 'absolute',
+    left: '0px',
+    top: 'calc(50% - 25px)',
+    margin: '12px',
+    fontSize: '50px',
+    color: 'white'
+  },
+  
+  centeredSearchIconStyles: {
+    position: 'absolute',
+    bottom: '0px',
+    left: 'calc(50% - 25px)',
+    margin: '12px',
+    fontSize: '50px',
+    color: 'white'  
   }
 
 };
