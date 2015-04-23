@@ -171,6 +171,12 @@ Styles = {
       width: '15%',
       right: '0px',
       height: '100%'
+  },
+
+  loadingStyles: {
+      position: 'absolute',
+      height: '100%',
+      backgroundColor: 'rgba(0,0,0,0.6)'
   }
 
 };
