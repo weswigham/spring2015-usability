@@ -1,5 +1,7 @@
 'use strict';
 var React = require('react');
+window.React = React;
+require("react-tap-event-plugin")();
 var {Splash} = require('./pages/splash');
 var {Main} = require('./pages/main');
 var {Settings} = require('./pages/settings');
@@ -145,5 +147,3 @@ var PrototypeApplication = React.createClass({
       );
     }
 });
-
-window.React = React;

@@ -51,20 +51,19 @@ var Playback = React.createClass({
           totalTime: this.state.totalTime,
           snack: false
         });
+        this.refs.snack.dismiss();
     },
     render: function () {
         var message = "We found '"+this.state.title+"' for you! Enjoy the film!";
         var timestamp = (new Date(this.state.time)).getHMS();
         var perTime = this.state.time / this.state.totalTime;
-        if (this.state.snack) {
-
-        }
+        var snackbar = (
+          <Snackbar ref="snack" message={message} action="dismiss" openOnMount={true} onActionTouchTap={this.closeSnack} />
+                        );
         return (
             <div style={containerStyles}>
-                <div style={overlayContainerStyles}>
-                    <Snackbar ref="snack" message={message} action="dismiss" openOnMount={true} onClick={this.closeSnack} />
-                </div>
-                <i style={settingsIconStyles} className="fa fa-bars"></i>
+                 {snackbar}
+                <i style={settingsIconStyles} onTouchTap={() => {this.props.goto('Settings')}} className="fa fa-bars"></i>
                 <i style={pauseIconStyles} className="fa fa-pause"></i>
                 <Slider name="timeline" defaultValue={0.0} value={perTime} style={timelineStyles} />
                 <h3 style={timestampStyles}>{timestamp}</h3>

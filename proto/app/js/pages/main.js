@@ -40,12 +40,12 @@ var Main = React.createClass({
         var i = setInterval(() => {
           if (this.state.loading < 100) {
               this.setState({
-                loading:this.state.loading + 10*Math.random(),
+                loading:this.state.loading + 50,
                 text:"Capturing Movie...",
                 movie: this.state.movie
               });
           }
-          if (this.state.loading > 100) {
+          if (this.state.loading >= 100) {
               clearInterval(i);
               this.props.goto('Playback');
           }
