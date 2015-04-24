@@ -31,8 +31,8 @@ navigator.getUserMedia({video: true}, function(camera) {
 var containerStyles = { 
     position: 'absolute',
     margin: '5px',
-    height: '540px', 
-    width: '960px', 
+    height: '100%', 
+    width: '100%', 
     boxShadow: '0 0 10px rgba(0,0,0,0.6)',
     overflow: 'hidden'
 };

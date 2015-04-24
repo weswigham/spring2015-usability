@@ -26,6 +26,10 @@ Styles = {
     WebkitFilter: 'blur(10px)',
     backgroundColor: 'black'
   },
+  
+  textBorder{
+  	, text-shadow: '-1px -1px 0px #000, 0px -1px 0px #000, 1px -1px 0px #000, -1px  0px 0px #000, 1px  0px 0px #000,-1px  1px 0px #000, 0px  1px 0px #000, 1px  1px 0px #000'
+  },
 
   closeIconStyles: {
     margin: '12px',
@@ -57,7 +61,7 @@ Styles = {
     margin: '12px',
     paddingLeft: '5px',
     fontSize: '50px',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   },
 
   carouselContainerStyles: {
