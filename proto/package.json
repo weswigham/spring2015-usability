@@ -15,17 +15,19 @@
     "gulp": "latest",
     "gulp-autoprefixer": "latest",
     "gulp-concat": "latest",
-    "gulp-notify": "latest",
+    "gulp-less": "latest",
     "gulp-minify-css": "latest",
     "gulp-mocha": "latest",
-    "gulp-util": "latest",
-    "gulp-less": "latest",
+    "gulp-notify": "latest",
     "gulp-sourcemaps": "latest",
+    "gulp-util": "latest",
     "pretty-hrtime": "latest",
+    "react-vtt": "^0.2.1",
     "reactify": "latest",
+    "require-dir": "latest",
     "run-sequence": "latest",
     "vinyl-source-stream": "latest",
-    "require-dir": "latest"
+    "vtt.js": "^0.12.1"
   },
   "dependencies": {
     "es6-promise": "latest",
@@ -36,7 +38,6 @@
     "react": "^0.13.2",
     "react-swipeable": "^2.1.0",
     "react-swiper": "^0.1.4",
-    "react-vtt": "^0.2.1",
-    "srt-to-vtt": "^1.0.2"
+    "react-vtt": "^0.2.1"
   }
 }

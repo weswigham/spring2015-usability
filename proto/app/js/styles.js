@@ -26,9 +26,9 @@ Styles = {
     WebkitFilter: 'blur(10px)',
     backgroundColor: 'black'
   },
-  
-  textBorder{
-  	, text-shadow: '-1px -1px 0px #000, 0px -1px 0px #000, 1px -1px 0px #000, -1px  0px 0px #000, 1px  0px 0px #000,-1px  1px 0px #000, 0px  1px 0px #000, 1px  1px 0px #000'
+
+  textBorder: {
+  	textShadow: '-1px -1px 0px #000, 0px -1px 0px #000, 1px -1px 0px #000, -1px  0px 0px #000, 1px  0px 0px #000,-1px  1px 0px #000, 0px  1px 0px #000, 1px  1px 0px #000'
   },
 
   closeIconStyles: {
@@ -208,7 +208,7 @@ Styles = {
     left: 'calc(50% - 25px)',
     margin: '12px',
     fontSize: '50px',
-    color: 'white'  
+    color: 'white'
   }
 
 };

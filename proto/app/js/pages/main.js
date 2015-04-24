@@ -15,16 +15,39 @@ var {
 
 var Main = React.createClass({
     getInitialState: function() {
-        return {loading: 0};
+        return {
+          loading: 0,
+          text: "Center a movie here and press to identify"
+        };
     },
-    onClick: function() {
+    leftCapture: function() {
+        this.setState({
+          loading: this.state.loading,
+          text: this.state.text,
+          movie: "Elephant's Dream"
+        });
+        this.capture();
+    },
+    rightCapture: function() {
+        this.setState({
+          loading: this.state.loading,
+          text: this.state.text,
+          movie: "Sintel"
+        });
+        this.capture();
+    },
+    capture: function() {
         var i = setInterval(() => {
           if (this.state.loading < 100) {
-              this.setState({loading:this.state.loading + 10*Math.random()});
+              this.setState({
+                loading:this.state.loading + 10*Math.random(),
+                text:"Capturing Movie...",
+                movie: this.state.movie
+              });
           }
           if (this.state.loading > 100) {
-              this.setState({loading: 100});
               clearInterval(i);
+              this.props.goto('Playback');
           }
         }, 500);
     },
@@ -35,11 +58,11 @@ var Main = React.createClass({
                 <i style={filmIconStyles} className="fa fa-film" onClick={() => this.props.goto('Playback')}></i>
                 <i style={cogIconStyles} className="fa fa-cogs" onClick={() => this.props.goto('Settings')}></i>
                 <i style={centeredSearchIconStyles} className="fa fa-search" onClick={() => this.props.goto('Search')}></i>
-                <div style={targetAreaStyles} onClick={this.onClick}>
+                <div style={targetAreaStyles}>
                     <div id="loading" style={loadingStyles}></div>
-                    <div style={leftBorderStyles}></div>
-                    <div style={rightBorderStyles}></div>
-                    <h3 style={directionTextStyles}>Center a movie here and press to identify</h3>
+                    <div style={leftBorderStyles} onClick={this.leftCapture}></div>
+                    <div style={rightBorderStyles} onClick={this.rightCapture}></div>
+                    <h3 style={directionTextStyles}>{this.state.text}</h3>
                 </div>
             </div>
         );
