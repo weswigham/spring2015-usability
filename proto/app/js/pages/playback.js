@@ -63,7 +63,7 @@ var Playback = React.createClass({
         return (
             <div style={containerStyles}>
                  {snackbar}
-                <i style={settingsIconStyles} onTouchTap={() => {this.props.goto('Settings')}} className="fa fa-bars"></i>
+                <i style={settingsIconStyles} onClick={() => {this.props.goto('Settings')}} className="fa fa-bars"></i>
                 <i style={pauseIconStyles} className="fa fa-pause"></i>
                 <Slider name="timeline" defaultValue={0.0} value={perTime} style={timelineStyles} />
                 <h3 style={timestampStyles}>{timestamp}</h3>
