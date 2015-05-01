@@ -1,4 +1,5 @@
 'use strict';
+
 var React = require('react');
 window.React = React;
 require("react-tap-event-plugin")();
@@ -20,15 +21,46 @@ navigator.getUserMedia  = navigator.getUserMedia ||
                           function(){ alert("camera not available")};
 
 var stream;
-navigator.getUserMedia({video: true}, function(camera) {
-    stream = window.URL.createObjectURL(camera);
+
+MediaStreamTrack.getSources(function(sourceInfos) {
+	
+  var videoSource = null;
+
+  for (var i = 0; i != sourceInfos.length; ++i) {
+  
+    var sourceInfo = sourceInfos[i];
+    if (sourceInfo.kind === 'video') {
+      console.log(sourceInfo.id, sourceInfo.label || 'camera');
+      videoSource = sourceInfo.id;
+    } else {
+      console.log('Some other kind of source: ', sourceInfo);
+    }
+  }
+
+  sourceSelected(videoSource);
+});
+
+function sourceSelected(videoSource) {
+  var constraints = {
+    video: {
+      optional: [{sourceId: videoSource}]
+    }
+  };
+
+//  navigator.getUserMedia(constraints, successCallback, errorCallback);
+navigator.getUserMedia({video:{optional: [{sourceId: videoSource}]}}, function(videoSource) {
+    stream = window.URL.createObjectURL(videoSource);
     React.render(
-        <PrototypeApplication/>,
+        React.createElement(PrototypeApplication, null),
         document.getElementById('container')
     );
   }, function() {
     console.log('camera denied');
 });
+
+}
+
+
 
 var containerStyles = { 
     position: 'absolute',
