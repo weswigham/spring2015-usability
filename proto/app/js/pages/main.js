@@ -28,19 +28,11 @@ var Main = React.createClass({
         });
         this.capture();
     },
-    rightCapture: function() {
-        this.setState({
-          loading: this.state.loading,
-          text: this.state.text,
-          movie: "Sintel"
-        });
-        this.capture();
-    },
     capture: function() {
         var i = setInterval(() => {
           if (this.state.loading < 100) {
               this.setState({
-                loading:this.state.loading + 50,
+                loading:this.state.loading + 15*Math.random(),
                 text:"Capturing Movie...",
                 movie: this.state.movie
               });
@@ -58,10 +50,10 @@ var Main = React.createClass({
                 <i style={filmIconStyles} className="fa fa-film" onClick={() => this.props.goto('Playback')}></i>
                 <i style={cogIconStyles} className="fa fa-cogs" onClick={() => this.props.goto('Settings')}></i>
                 <i style={centeredSearchIconStyles} className="fa fa-search" onClick={() => this.props.goto('Search')}></i>
-                <div style={targetAreaStyles}>
+                <div style={targetAreaStyles} onClick={this.leftCapture}>
                     <div id="loading" style={loadingStyles}></div>
-                    <div style={leftBorderStyles} onClick={this.leftCapture}></div>
-                    <div style={rightBorderStyles} onClick={this.rightCapture}></div>
+                    <div style={leftBorderStyles}></div>
+                    <div style={rightBorderStyles}></div>
                     <h3 style={directionTextStyles}>{this.state.text}</h3>
                 </div>
             </div>

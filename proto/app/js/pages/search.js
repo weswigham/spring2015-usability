@@ -40,7 +40,7 @@ var Search = React.createClass({
     _bindPosterTap: function(movie) {
         var self = this;
         return function(e) {
-            localStorage.setItem('')
+            console.log('Tapped on '+movie.name);
         }  
     },
     render: function () {   
@@ -63,7 +63,7 @@ var Search = React.createClass({
                     <Slick dots={false} infinite={true} speed={500} slidesToShow={3} slidesToScroll={1} arrows={false}>
                         {(filtered.map(function(movie, i) {
                             return(
-                            <Paper key={i} zDepth={1} style={posterCardStyles} onTouchTap={this._bindPosterTap(movie)}>
+                            <Paper key={i} zDepth={1} style={posterCardStyles} onTouchTap={self._bindPosterTap(movie)}>
                                 <img alt={movie.name} src={movie.poster} style={posterImageStyles} />
                             </Paper>
                             );  

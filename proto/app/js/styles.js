@@ -81,9 +81,8 @@ Styles = {
 
   posterImageStyles: {
     width: '100%',
-    padding: '5px',
-    position: 'relative',
-    top: '5px'
+    padding: '2px',
+    position: 'relative'
   },
 
   subtitleStyles: {
@@ -93,7 +92,6 @@ Styles = {
     right: '0px',
     textAlign: 'center',
     color: 'white',
-    textShadow: '1px 1px black'
   },
 
   timelineStyles: {

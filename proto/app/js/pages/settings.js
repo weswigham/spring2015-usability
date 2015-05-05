@@ -7,22 +7,59 @@ var Settings = React.createClass({
     render: function () {
         var menuItems = [{
             type: MenuItem.Types.SUBHEADER,
-            text: 'Settings'
-        }, {
-            route: 'language',
             text: 'Language'
         }, {
-            route: 'about',
-            text: 'About'
+            route: 'english',
+            text: 'English'
         }, {
-            route: 'advance',
+            route: 'french',
+            text: 'French'
+        }, {
+            type: MenuItem.Types.SUBHEADER,
+            text: 'Font Display Size'
+        }, {
+            route: 'small',
+            text: 'Small'
+        }, {
+            route: 'medium',
+            text: 'Medium'
+        }, {
+            route: 'large',
+            text: 'Large'
+        }, {
+            type: MenuItem.Types.SUBHEADER,
             text: 'Advance'
+        }, {
+            route: 'clear settings',
+            text: 'clear settings'
         }];
         return (
             <div style={containerStyles} onClick={() => this.props.goto(this.props.from)}>
-                <LeftNav ref="nav" docked={false} menuItems={menuItems} />
+                <LeftNav ref="nav" docked={false} menuItems={menuItems} onChange={this._onItemTap} />
             </div>
         );
+    },
+    _onItemTap(e, key, menuItem) {
+      if ( menuItem.route == "english") {
+        localStorage.language = "ENG";
+      }
+      if ( menuItem.route == "french") {
+        localStorage.language = "FRE";
+      }
+      if ( menuItem.route == "small") {
+        localStorage.fontSize = "small";
+      }
+      if ( menuItem.route == "medium") {
+        localStorage.fontSize = "medium";
+      }
+      if ( menuItem.route == "large") {
+        localStorage.fontSize = "large";
+      }
+      if ( menuItem.route == "clear settings") {
+        localStorage.fontSize = "medium",
+        localStorage.language = "ENG",
+        localStorage.movie = "ElephantsDream"
+      }
     },
     componentDidMount: function() {
         this.refs.nav.toggle();
