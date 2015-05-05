@@ -94,7 +94,7 @@ var Playback = React.createClass({
               (this.state.movie != localStorage.movie)) {
           this.state.lang = localStorage.language;
           this.state.movie = localStorage.movie;
-          subtitleFile = '../subs/'+this.state.movie+'-'+this.state.lang+'.srt';
+          subtitleFile = './subs/'+this.state.movie+'-'+this.state.lang+'.srt';
           subText;
           subObject;
           client = new XMLHttpRequest();
@@ -121,7 +121,7 @@ var Playback = React.createClass({
           }
 
           this.setState({
-            title: "Elephant's Dream",
+            title: localStorage.movie === 'Sintel' ? 'Sintel' : 'Elephant\'s Dream',
             time: newTime,
             totalTime: this.state.totalTime,
             snack: this.state.snack,
