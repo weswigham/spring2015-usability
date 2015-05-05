@@ -22,7 +22,6 @@
     "gulp-sourcemaps": "latest",
     "gulp-util": "latest",
     "pretty-hrtime": "latest",
-    "react-vtt": "^0.2.1",
     "reactify": "latest",
     "require-dir": "latest",
     "run-sequence": "latest",
@@ -39,6 +38,7 @@
     "react-swipeable": "^2.1.0",
     "react-swiper": "^0.1.4",
     "react-tap-event-plugin": "^0.1.6",
-    "react-vtt": "^0.2.1"
+    "react-vtt": "^0.2.1",
+    "react-slick": "latest"
   }
 }

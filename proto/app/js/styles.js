@@ -65,9 +65,6 @@ Styles = {
   },
 
   carouselContainerStyles: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'stretch',
     position: 'absolute',
     top: '94px',
     height: 'calc(100% - 94px)',
@@ -77,7 +74,6 @@ Styles = {
   },
 
   posterCardStyles: {
-    minWidth: '280px',
     margin: '12px',
     backgroundColor: 'white',
     overflow: 'hidden'
