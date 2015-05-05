@@ -16,8 +16,14 @@ var srtparse = require('../SRTparse');
 var STARTTIME = new Date().getTime();
 
 var subtitleFile;
+if (localStorage.movie == undefined) {
+  localStorage.movie = 'ElephantsDream';
+}
 if (localStorage.language == undefined) {
   localStorage.language = 'ENG';
+}
+if (localStorage.fontSize == undefined) {
+  localStorage.fontSize = 'medium';
 }
 var subText;
 var subObject;
@@ -59,7 +65,16 @@ var Playback = React.createClass({
         var perTime = this.state.time / this.state.totalTime;
         var snackbar = (
           <Snackbar ref="snack" message={message} action="dismiss" openOnMount={true} onActionTouchTap={this.closeSnack} />
-                        );
+        );
+        if (localStorage.fontSize == "small") {
+          subtitleStyles.fontSize = "2em";
+        }
+        if (localStorage.fontSize == "medium") {
+          subtitleStyles.fontSize = "3em";
+        }
+        if (localStorage.fontSize == "large") {
+          subtitleStyles.fontSize = "5em";
+        }
         return (
             <div style={containerStyles}>
                  {snackbar}
@@ -75,9 +90,11 @@ var Playback = React.createClass({
     },
     componentDidMount: function() {
 
-        if (this.state.lang != localStorage.language) {
+        if ((this.state.lang != localStorage.language) ||
+              (this.state.movie != localStorage.movie)) {
           this.state.lang = localStorage.language;
-          subtitleFile = '../subs/ElephantsDream-'+this.state.lang+'.srt';
+          this.state.movie = localStorage.movie;
+          subtitleFile = '../subs/'+this.state.movie+'-'+this.state.lang+'.srt';
           subText;
           subObject;
           client = new XMLHttpRequest();

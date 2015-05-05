@@ -19,7 +19,7 @@ module.exports = function(SRTstring) {
         text: text
       };
       subtitleObject[endTime.trim()] = {
-        text: [""]
+        text: ["", ""]
       };
     });
     return subtitleObject;
