@@ -15,18 +15,23 @@ var Slick = require('react-slick');
 
 var movies = [{
     name: 'Django Unchained',
+    subtitles: 'ElephantsDream',
     poster: 'img/django.jpg'
 }, {
     name: 'Elephant\'s Dream',
+    subtitles: 'ElephantsDream',
     poster: 'img/elephant.jpg'
 }, {
     name: 'Guardians of the Galaxy',
+    subtitles:'ElephantsDream',
     poster: 'img/guardians.jpg'
 }, {
     name: 'Pacific Rim',
+    subtitles:'ElephantsDream',
     poster: 'img/pacific.jpg'
 }, {
     name: 'Sintel',
+    subtitles: 'Sintel',
     poster: 'img/sintel.jpg'
 }];
 
@@ -41,6 +46,8 @@ var Search = React.createClass({
         var self = this;
         return function(e) {
             console.log('Tapped on '+movie.name);
+            localStorage.movie = movie.subtitles; //TODO: HACK: THIS IS SILLY
+            self.props.goto('Playback');
         }  
     },
     render: function () {   
