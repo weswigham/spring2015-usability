@@ -15,11 +15,11 @@ module.exports = function(SRTstring) {
       var text = lines.slice(1).filter(function(line) {
           return (line != "");
       });
-      subtitleObject[startTime] = {
+      subtitleObject[startTime.trim()] = {
         text: text
       };
-      subtitleObject[endTime] = {
-        text: ""
+      subtitleObject[endTime.trim()] = {
+        text: [""]
       };
     });
     return subtitleObject;

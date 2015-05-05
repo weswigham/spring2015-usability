@@ -29,6 +29,12 @@ var Splash = React.createClass({
                 </div>
             </div>
         );
+    },
+    componentDidMount: function() {
+      var i = setInterval(() => {
+        this.props.goto('Main');
+        clearInterval(i);
+      }, 3000);
     }
 });
 

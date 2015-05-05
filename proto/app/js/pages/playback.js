@@ -13,18 +13,15 @@ var {Snackbar, Slider} = require('material-ui');
 var reactVtt = require('react-vtt');
 var srtparse = require('../SRTparse');
 
-var subtitleFile = '../subs/ElephantsDream.txt';
+var STARTTIME = new Date().getTime();
+
+var subtitleFile;
+if (localStorage.language == undefined) {
+  localStorage.language = 'ENG';
+}
 var subText;
 var subObject;
-var client = new XMLHttpRequest();
-client.open('GET', subtitleFile);
-client.onreadystatechange = function() {
-  if (client.readyState == 4 && client.status == 200) {
-    subText = client.responseText;
-    subObject = srtparse(subText);
-  }
-}
-client.send();
+var client;
 
 Date.prototype.getHMS = function(){
   var hours = (this.getHours() - 19) < 10 ? "0" + (this.getHours() - 19) : (this.getHours() - 19);
@@ -39,9 +36,10 @@ var Playback = React.createClass({
         return {
           title: "Elephant's Dream",
           time: 0,
-          totalTime: 540000,
+          totalTime: 658000,
           snack: true,
-          text: ""
+          text: "",
+          lang: ""
         };
     },
     closeSnack: function() {
@@ -49,7 +47,9 @@ var Playback = React.createClass({
           title: "Elephant's Dream",
           time: this.state.time,
           totalTime: this.state.totalTime,
-          snack: false
+          snack: false,
+          text: this.state.text,
+          lang: this.state.lang
         });
         this.refs.snack.dismiss();
     },
@@ -63,7 +63,7 @@ var Playback = React.createClass({
         return (
             <div style={containerStyles}>
                  {snackbar}
-                <i style={settingsIconStyles} onClick={() => {this.props.goto('Settings')}} className="fa fa-bars"></i>
+                <i style={settingsIconStyles} onClick={() => {this.props.goto('Main')}} className="fa fa-chevron-left"></i>
                 <i style={pauseIconStyles} className="fa fa-pause"></i>
                 <Slider name="timeline" defaultValue={0.0} value={perTime} style={timelineStyles} />
                 <h3 style={timestampStyles}>{timestamp}</h3>
@@ -74,19 +74,43 @@ var Playback = React.createClass({
         );
     },
     componentDidMount: function() {
+
+        if (this.state.lang != localStorage.language) {
+          this.state.lang = localStorage.language;
+          subtitleFile = '../subs/ElephantsDream-'+this.state.lang+'.srt';
+          subText;
+          subObject;
+          client = new XMLHttpRequest();
+          client.open('GET', subtitleFile);
+          client.onreadystatechange = function() {
+            if (client.readyState == 4 && client.status == 200) {
+              subText = client.responseText;
+              subObject = srtparse(subText);
+            }
+          }
+          client.send();
+        }
+
         var i = setInterval(() => {
+          /* get the new time */
+          var newTime = (new Date().getTime() - STARTTIME) % this.state.totalTime;
+
+          /* get the new text */
+          var newText = this.state.text;
+
+          var ts = (new Date(newTime)).getHMS();
+          if (subObject.hasOwnProperty(ts)) {
+            newText = subObject[ts];
+          }
+
           this.setState({
             title: "Elephant's Dream",
-            time: this.state.time+500,
+            time: newTime,
             totalTime: this.state.totalTime,
             snack: this.state.snack,
-            text: this.state.text
+            text: newText,
+            lang: this.state.lang
           });
-
-          var ts = (new Date(this.state.time)).getHMS();
-          if (subObject.hasOwnProperty(ts)) {
-            this.state.text = subObject[ts];
-          }
 
           if (this.state.time == this.state.totalTime) {
             clearInterval(i);
@@ -102,13 +126,5 @@ var Playback = React.createClass({
         node.style.marginLeft = '74px';
     }
 });
-
-// React.renderComponent(
-//   reactVtt.IsolatedCue({
-//     traget: './assets/chocolate_rain.vtt',
-//     currentTime: function(){ return this.state.time; }
-//   }),
-//   document.getElementById('#video-vtt')
-// );
 
 module.exports = {Playback};
