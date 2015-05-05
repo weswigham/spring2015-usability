@@ -97,7 +97,6 @@ Styles = {
     right: '0px',
     textAlign: 'center',
     color: 'white',
-    textShadow: '1px 1px black'
   },
 
   timelineStyles: {
