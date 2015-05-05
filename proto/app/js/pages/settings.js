@@ -26,6 +26,12 @@ var Settings = React.createClass({
         }, {
             route: 'large',
             text: 'Large'
+        }, {
+            type: MenuItem.Types.SUBHEADER,
+            text: 'Advance'
+        }, {
+            route: 'clear settings',
+            text: 'clear settings'
         }];
         return (
             <div style={containerStyles} onClick={() => this.props.goto(this.props.from)}>
@@ -48,6 +54,11 @@ var Settings = React.createClass({
       }
       if ( menuItem.route == "large") {
         localStorage.fontSize = "large";
+      }
+      if ( menuItem.route == "clear settings") {
+        localStorage.fontSize = "medium",
+        localStorage.language = "ENG",
+        localStorage.movie = "ElephantsDream"
       }
     },
     componentDidMount: function() {
